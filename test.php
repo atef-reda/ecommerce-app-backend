@@ -1,7 +1,9 @@
 <?php 
 
 include 'connect.php';
-sendEmail("redaatef329@gmail.com","hi","from php function");
+getAllData("users","1 = 1");
+
+// sendEmail("redaatef329@gmail.com","hi","from php function");
 // $table = "users";
 // $name = filterRequest("namerequest");
 // $data = array( 
@@ -12,3 +14,4 @@ sendEmail("redaatef329@gmail.com","hi","from php function");
 
 // );
 // $count = insertData($table , $data);
+

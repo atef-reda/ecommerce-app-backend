@@ -147,11 +147,20 @@ function checkAuthenticate()
 function printFailure($msg="none"){
     echo json_encode(array("status"=>"failure","message"=>$msg));
 }
+function printSuccess($msg="none"){
+    echo json_encode(array("status"=>"success","message"=>$msg));
+}
+function result($count){
+    if($count>0){
+        printSuccess();
+    }else{
+        printFailure();
+    }
+}
 
 function sendEmail($to, $title, $body){
     $header = "From: support@waelabohamza.com " . "\n" . "CC: waeleagle1243@gmail.com";
     mail($to, $title, $body, $header);
-    echo "Success";
 }
 
 

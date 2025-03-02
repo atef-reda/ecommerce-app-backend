@@ -3,7 +3,7 @@
 include "../connect.php";
 
 $username = filterRequest("username");
-$password = sha1("password");
+$password = trim($_POST["password"]);
 $email = filterRequest("email");
 $phone = filterRequest("phone");
 $verfiycode = rand(10000,99999);
@@ -21,6 +21,6 @@ if ($count > 0) {
         "users_phone" => $phone,
         "users_verfiycode" => $verfiycode,
     );
-    sendEmail($email,"Verify Code Ecommerce","Verify Code is $verifycode ");
+    // sendEmail($email,"Verify Code Ecommerce","Verify Code is $verifycode ");
     insertData("users", $data);
 }
