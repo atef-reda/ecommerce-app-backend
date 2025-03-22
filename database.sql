@@ -39,3 +39,16 @@ LIMIT 25;
 
 
 **************** MyFavorite ****************
+
+
+
+
+**************** Cart View ****************
+CREATE or REPLACE VIEW cartview AS
+SELECT SUM(items.items_price) as itemsprice ,COUNT(cart_itemsid) as itemscount,items.* , cart.* from cart
+INNER JOIN items on items.items_id = cart_itemsid
+GROUP BY items.items_id , cart_usersid
+
+SELECT SUM(itemsprice) as totalprice ,count(itemscount) as totalcount from cartview
+WHERE cart_usersid=18
+GROUP BY cart_usersid
