@@ -7,7 +7,7 @@ $userid = filterRequest("user_id");
 $categoriesid=filterRequest("categories_id");
 
 $stmt = $con->prepare(
-"SELECT items1view.*, '1' AS favorite 
+"SELECT items1view.*, '1' AS favorite , (items_price - (items_price*items_discount/100)) as items_price_discount
 FROM items1view 
 INNER JOIN favorites 
 ON favorites.favorites_itemsid = items1view.items_id 
@@ -16,7 +16,7 @@ WHERE categories_id = $categoriesid
 
 UNION ALL
 
-SELECT items1view.*, '0' AS favorite 
+SELECT items1view.*, '0' AS favorite , (items_price - (items_price*items_discount/100)) as items_price_discount
 FROM items1view 
 WHERE categories_id = $categoriesid 
 AND items_id NOT IN (

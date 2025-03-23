@@ -45,7 +45,7 @@ LIMIT 25;
 
 **************** Cart View ****************
 CREATE or REPLACE VIEW cartview AS
-SELECT SUM(items.items_price) as itemsprice ,COUNT(cart_itemsid) as itemscount,items.* , cart.* from cart
+SELECT SUM( (items.items_price - (items.items_price*items.items_discount/100))) as itemsprice ,COUNT(cart_itemsid) as itemscount,items.* , cart.* from cart
 INNER JOIN items on items.items_id = cart_itemsid
 GROUP BY items.items_id , cart_usersid
 
